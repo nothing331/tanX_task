@@ -39,7 +39,16 @@ This application allows users to set price alerts for cryptocurrencies and recei
 
    
 5. The application will be available at `http://localhost:5000`
-
+4. Run the following command to start the application:
+   docker-compose up --build
+   docker-compose exec web flask <command>
+   docker-compose exec db psql -U user -d alertsdb
+   docker-compose exec redis redis-cli
+   docker-compose logs web
+   docker-compose up -d --no-deps --build web
+   docker-compose exec web flask db init
+  docker-compose exec web flask db migrate -m "Initial migration"
+  docker-compose exec web flask db upgrade
 ## API Endpoints
 
 ### Authentication
