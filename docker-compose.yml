@@ -6,13 +6,19 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      - postgres
       - redis
+    networks:
+      - theworld
     environment:
       - FLASK_ENV=development
+      - DATABASE_URL=postgresql://user:password@postgres:5432/alertsdb
 
-  db:
+  postgres:
     image: postgres:13
+    hostname: postgres
+    networks:
+      - theworld
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
@@ -27,3 +33,7 @@ services:
 volumes:
   postgres_data:
   migrations:
+
+networks:
+  theworld:
+    driver: bridge

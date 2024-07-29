@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from config import Config
 
 def send_email(user, alert):
+    print("Trigger")
     msg = MIMEMultipart()
     msg['From'] = Config.MAIL_USERNAME
     msg['To'] = user.email

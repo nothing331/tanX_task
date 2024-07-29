@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["sh", "-c", "flask db upgrade && python run.py"]
+CMD ["sh", "-c", "flask db upgrade && python wsgi.py"]
