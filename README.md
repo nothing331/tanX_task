@@ -26,16 +26,11 @@ This application allows users to set price alerts for cryptocurrencies and recei
 2. Make sure you have Docker and Docker Compose installed
 3. Create a `.env` file with the necessary content (replace with your actual values)
 4. Run the following command to start the application:
-   
-docker-compose up --build
-docker-compose exec web flask <command>
-docker-compose exec db psql -U user -d alertsdb
-docker-compose exec redis redis-cli
-docker-compose logs web
-docker-compose up -d --no-deps --build web
-docker-compose exec web flask db init
-docker-compose exec web flask db migrate -m "Initial migration"
-docker-compose exec web flask db upgrade
+
+```
+docker-compose up -d
+```
+
 ## API Endpoints
 
 ### Authentication
