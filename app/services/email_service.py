@@ -20,8 +20,12 @@ def send_email(user, alert):
     msg.attach(MIMEText(body, 'plain'))
    
     try:
-        # Check if SMTP configuration is valid
-        if not all([Config.MAIL_SERVER, Config.MAIL_PORT, Config.MAIL_USERNAME, Config.MAIL_PASSWORD]):
+        # if not all([Config.MAIL_SERVER, Config.MAIL_PORT, Config.MAIL_USERNAME, Config.MAIL_PASSWORD]):
+        #     raise ValueError("SMTP configuration is incomplete")
+
+        #For the submission sake I am not using an .env file to keep my id's and passwords so that it runs when you fetch the repo is cloned
+
+        if not all([Config.MAIL_SERVER, Config.MAIL_PORT, "nothinggame4@gmail.com", "vvwjipjhofkmotup"]):
             raise ValueError("SMTP configuration is incomplete")
         
         server = smtplib.SMTP(Config.MAIL_SERVER, Config.MAIL_PORT)
@@ -35,6 +39,6 @@ def send_email(user, alert):
         print(f"Failed to send email: {str(e)}")
         print(f"SMTP Server: {Config.MAIL_SERVER}")
         print(f"SMTP Port: {Config.MAIL_PORT}")
-        print(f"SMTP Username: {"nothinggame4@gmail.com"}")
+        print(f"SMTP Username: nothinggame4@gmail.com")
         print(f"User Email: {user.email}")
         # Don't print the password for security reasons

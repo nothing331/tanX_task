@@ -33,6 +33,7 @@ def delete_alert(alert_id):
         return jsonify({"message": "Alert deleted successfully"}), 200
     return jsonify({"message": "Alert not found"}), 404
 
+
 @bp.route('/', methods=['GET'])
 @jwt_required()
 def get_alerts():
