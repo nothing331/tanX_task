@@ -25,20 +25,21 @@ def send_email(user, alert):
 
         #For the submission sake I am not using an .env file to keep my id's and passwords so that it runs when you fetch the repo is cloned
 
-        if not all([Config.MAIL_SERVER, Config.MAIL_PORT, "nothinggame4@gmail.com", "vvwjipjhofkmotup"]):
+        if not all([Config.MAIL_SERVER, Config.MAIL_PORT, Config.MAIL_USERNAME, Config.MAIL_PASSWORD]):
             raise ValueError("SMTP configuration is incomplete")
         
         server = smtplib.SMTP(Config.MAIL_SERVER, Config.MAIL_PORT)
         server.starttls()
-        server.login("nothinggame4@gmail.com", "vvwjipjhofkmotup")
+        # server.login(Config.MAIL_USERNAME, Config.MAIL_PASSWORD)
+        server.login("nothinggame4@gmail.com", "vwjipjhofkmotup")
         text = msg.as_string()
-        server.sendmail("nothinggame4@gmail.com", user.email, text)
+        server.sendmail(Config.MAIL_USERNAME, user.email, text)
         server.quit()
         print(f"Email sent successfully to {user.email}")
     except Exception as e:
         print(f"Failed to send email: {str(e)}")
         print(f"SMTP Server: {Config.MAIL_SERVER}")
         print(f"SMTP Port: {Config.MAIL_PORT}")
-        print(f"SMTP Username: nothinggame4@gmail.com")
+        print(f"SMTP Username: {Config.MAIL_USERNAME}")
         print(f"User Email: {user.email}")
         # Don't print the password for security reasons
